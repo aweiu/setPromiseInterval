@@ -1,8 +1,15 @@
 {
   "name": "set-promise-interval",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "用于定时执行异步任务，调用方式类似原生 setInterval",
-  "keywords": ["promise", "async", "interval", "async-interval"],
+  "keywords": [
+    "promise",
+    "async",
+    "interval",
+    "async-interval",
+    "setInterval",
+    "setPromiseInterval"
+  ],
   "main": "dist/setPromiseInterval.js",
   "typings": "types/setPromiseInterval.d.ts",
   "author": "aweiu",
