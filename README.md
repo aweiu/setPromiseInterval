@@ -9,7 +9,7 @@ npm install set-promise-interval --save
 ## 使用
 ```
 // const { default: setPromiseInterval, clearPromiseInterval } = require('set-promise-interval') 
-import { clearPromiseInterval }, setPromiseInterval from 'set-promise-interval'
+import setPromiseInterval, { clearPromiseInterval } from 'set-promise-interval'
 
 async somePromiseFun () {}
 
