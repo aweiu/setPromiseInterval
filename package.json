@@ -1,6 +1,6 @@
 {
   "name": "set-promise-interval",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "用于定时执行异步任务，调用方式类似原生 setInterval",
   "keywords": [
     "promise",

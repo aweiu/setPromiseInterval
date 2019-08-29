@@ -1,4 +1,4 @@
-const clearResolves = new Map<number, () => any>()
+const clearResolves = new Map<number, null | (() => any)>()
 let id = 0
 
 function delay(ms: number) {
@@ -23,7 +23,7 @@ async function run(
 }
 
 export function clearPromiseInterval(intervalId?: number) {
-  return typeof intervalId === 'number'
+  return typeof intervalId === 'number' && clearResolves.has(intervalId)
     ? new Promise((resolve) => clearResolves.set(intervalId, resolve))
     : Promise.resolve()
 }
@@ -33,6 +33,7 @@ export default function setPromiseInterval(
   interval?: number,
 ) {
   id += 1
+  clearResolves.set(id, null)
   run(id, handler, interval)
   return id
 }
