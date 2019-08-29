@@ -1,4 +1,4 @@
-const ids = new Set<number>()
+const clearResolves = new Map<number, () => any>()
 let id = 0
 
 function delay(ms: number) {
@@ -10,7 +10,10 @@ async function run(
   ...[handler, interval = 0]: Parameters<typeof setPromiseInterval>
 ) {
   while (true) {
-    if (!ids.has(id)) {
+    const clearResolve = clearResolves.get(id)
+    if (clearResolve) {
+      clearResolves.delete(id)
+      clearResolve()
       break
     }
     const startTime = new Date().getTime()
@@ -20,9 +23,9 @@ async function run(
 }
 
 export function clearPromiseInterval(intervalId?: number) {
-  if (typeof intervalId === 'number') {
-    ids.delete(intervalId)
-  }
+  return typeof intervalId === 'number'
+    ? new Promise((resolve) => clearResolves.set(intervalId, resolve))
+    : Promise.resolve()
 }
 
 export default function setPromiseInterval(
@@ -30,7 +33,6 @@ export default function setPromiseInterval(
   interval?: number,
 ) {
   id += 1
-  ids.add(id)
   run(id, handler, interval)
   return id
 }
