@@ -4,6 +4,7 @@
   "rules": {
     "prettier": true,
     "no-console": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "variable-name": false
   }
 }
