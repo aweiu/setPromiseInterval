@@ -4,7 +4,7 @@ const runningHandlers = new Map<number, Promise<any>>()
 let id = 0
 
 function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, Math.max(ms, 0)))
 }
 
 async function run(
